@@ -39,9 +39,11 @@ namespace ToDo_List_AppMovil_22_1027
             if (!string.IsNullOrWhiteSpace(NewTodoInputValue))
             {
                 var newItem = new ToDoItem(NewTodoInputValue, false);
-                await database.SaveToDoItemAsync(newItem);
+
                 ToDoItems.Add(newItem);
-                NewTodoInputValue = string.Empty; 
+                await database.SaveToDoItemAsync(newItem);
+                NewTodoInputValue = string.Empty;
+                OnPropertyChanged(nameof(NewTodoInputValue));
             }
         }
 
@@ -49,8 +51,9 @@ namespace ToDo_List_AppMovil_22_1027
 
         private async Task RemoveTodoItem(ToDoItem item)
         {
-            await database.DeleteToDoItemAsync(item);
+            
             ToDoItems.Remove(item);
+            await database.DeleteToDoItemAsync(item);
         }
 
         private async void LoadToDoItems()
@@ -69,6 +72,7 @@ namespace ToDo_List_AppMovil_22_1027
             if (!string.IsNullOrWhiteSpace(result))
             {
                 todoItem.TodoText = result;
+                await database.SaveToDoItemAsync(todoItem);
                 OnPropertyChanged(nameof(ToDoItems));
             }
         }
