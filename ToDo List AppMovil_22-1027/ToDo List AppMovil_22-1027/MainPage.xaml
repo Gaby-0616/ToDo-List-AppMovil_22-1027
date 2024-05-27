@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:ToDo_List_AppMovil_22_1027"
+             xmlns:input="clr-namespace:Plugin.InputKit.Shared.Controls;assembly=Plugin.InputKit"
+             x:Class="ToDo_List_AppMovil_22_1027.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:TodoListViewModel/>
+    </ContentPage.BindingContext>
+
+    <StackLayout Padding="20" BackgroundColor="#F5F5F5">
+        <Label Text="To-Do List"
+               FontSize="36"
+               HorizontalOptions="Center"
+               TextColor="#333333"
+               FontAttributes="Bold"
+               Margin="0, 20"/>
+
+        <Entry x:Name="InputField"
+               Style="{StaticResource EntryStyle}"
+               Text="{Binding NewTodoInputValue}"
+               Placeholder="Ingresar Nuevas Listas"
+               ReturnCommand="{Binding AddTodoCommand}" />
+
+        <Button Text="Agregar"
+                Style="{StaticResource ButtonStyle}"
+                Command="{Binding AddTodoCommand}" />
+
+        <ListView x:Name="ToDoList"
+          ItemsSource="{Binding ToDoItems}"
+          HasUnevenRows="True"
+          SeparatorColor="#CCCCCC"
+          Margin="0, 20">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Frame CornerRadius="10" Margin="0, 5" HasShadow="True">
+                            <StackLayout Orientation="Horizontal"
+                                 Padding="10"
+                                 BackgroundColor="#FFFFFF"
+                                 Margin="0, 5">
+                                <CheckBox IsChecked="{Binding Completo}"
+                                  VerticalOptions="Center"/>
+                                <Label Text="{Binding TodoText}"
+                               VerticalOptions="Center"
+                               HorizontalOptions="StartAndExpand"/>
+                                <Button Text="Editar"
+                                        Command="{Binding Path=BindingContext.EditTodoCommand, Source={x:Reference ToDoList}}"
+                                        CommandParameter="{Binding .}"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="LightGray"
+                                        Margin="5,0"/>
+                                <Button Text="Eliminar"
+                                        Command="{Binding Path=BindingContext.RemoveTodoCommand, Source={x:Reference ToDoList}}"
+                                        CommandParameter="{Binding .}"
+                                        VerticalOptions="Center"
+                                        BackgroundColor="LightGray"
+                                        Margin="5,0"/>
+                            </StackLayout>
+                        </Frame>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="EntryStyle" TargetType="Entry">
+        <Setter Property="BackgroundColor" Value="#FFFFFF" />
+        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="Margin" Value="10, 5" />
+        <Setter Property="HeightRequest" Value="50" />
+        <Setter Property="PlaceholderColor" Value="#888888" />
+    </Style>
+
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="#007BFF" />
+        <Setter Property="TextColor" Value="White" />
+        <Setter Property="FontSize" Value="Medium" />
+        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Margin" Value="10, 5" />
+        <Setter Property="HeightRequest" Value="50" />
+    </Style>
+
+    <Style x:Key="LabelStyle" TargetType="Label">
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="TextColor" Value="#333333" />
+        <Setter Property="Margin" Value="10, 5" />
+    </Style>
+
+    <Style x:Key="CheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="Color" Value="#007BFF" />
+    </Style>
+</ResourceDictionary>
+    
+    
